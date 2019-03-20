@@ -1,0 +1,11 @@
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\bin\Debug\netcoreapp2.2\App.deps.json
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\bin\Debug\netcoreapp2.2\App.runtimeconfig.json
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\bin\Debug\netcoreapp2.2\App.runtimeconfig.dev.json
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\bin\Debug\netcoreapp2.2\App.dll
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\bin\Debug\netcoreapp2.2\App.pdb
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.csprojAssemblyReference.cache
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.csproj.CoreCompileInputs.cache
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.AssemblyInfoInputs.cache
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.AssemblyInfo.cs
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.dll
+c:\Users\Roothery\Documents\Caixa-Eletronico\src\App\obj\Debug\netcoreapp2.2\App.pdb
