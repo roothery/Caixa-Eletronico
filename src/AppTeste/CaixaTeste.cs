@@ -8,17 +8,22 @@ namespace AppTeste
     public class CaixaTeste
     {
 
-        CaixaEletronico caixaEletronico = new CaixaEletronico();
-
         [Fact]
-        public void Deve_receber_10_reais_no_saque_de_10_reais()
+        public void Deve_ter_o_valor_do_saque_disponivel_no_caixa()
         {
-            Dictionary<int, int> nota = caixaEletronico.saqueDe(10);
-            Dictionary<int, int> resultado = new Dictionary<int, int>();
+            var saldoDoCaixa = new Dictionary<int, int>
+            {
+            { 100, 3 },
+            { 50, 2 },
+            { 20, 0 },
+            { 10, 0 }
+            };
 
-            resultado.Add(10, 1);
+            var caixaEletronico = new CaixaEletronico(saldoDoCaixa);
 
-            Assert.Equal(resultado, nota);
+            var resultado = caixaEletronico.TemDisponivel(200);
+
+            Assert.True(resultado);
         }
     }
 }
