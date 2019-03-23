@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace App
 {
@@ -6,7 +7,23 @@ namespace App
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var saldoDoCaixa = new Dictionary<int, int>
+            {
+            { 100, 3 },
+            { 50, 1 },
+            { 20, 0 },
+            { 10, 0 }
+            };
+
+            var caixaEletronico = new CaixaEletronico(saldoDoCaixa);
+
+            var resultado = caixaEletronico.SaqueDe(Convert.ToInt32(args[0]));
+
+            foreach (var item in resultado)
+            {
+                Console.WriteLine(item.Value + "x " + item.Key);
+            }
+            
         }
     }
 }

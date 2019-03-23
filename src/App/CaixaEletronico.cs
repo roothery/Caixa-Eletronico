@@ -13,54 +13,66 @@ namespace App
             { 20, 0 },
             { 10, 0 }
         };
-        Dictionary<int, int> ResultadoDoSaque = new Dictionary<int, int>();
-
+        Dictionary<int, int> ResultadoDoSaque;
         public CaixaEletronico(Dictionary<int, int> saldoDoCaixa)
         {
             NotasDisponiveisNoCaixa = saldoDoCaixa;
+            ResultadoDoSaque = new Dictionary<int, int>();
         }
 
-        public Dictionary<int, int> saqueDe(int valorDoSaque)
+        public Dictionary<int, int> SaqueDe(int valorDoSaque)
         {
-            while (TemDisponivel(valorDoSaque))
+            if (valorDoSaque < 10)
             {
-                if (valorDoSaque > 0 && valorDoSaque % 10 == 0)
-                {
-                    if (valorDoSaque >= 100 &&
-                     NotasDisponiveisNoCaixa.Any(x => x.Key == 100 && x.Value > 0))
-                    {
-                        ObterDoCaixaNota(100);
-                        valorDoSaque -= 100;
-                        SacarDoCaixaNota(100);
-                    }
-
-                    else if (valorDoSaque >= 50 &&
-                     NotasDisponiveisNoCaixa.Any(x => x.Key == 50 && x.Value > 0))
-                    {
-                        ObterDoCaixaNota(50);
-                        valorDoSaque -= 50;
-                        SacarDoCaixaNota(50);
-                    }
-
-                    else if (valorDoSaque >= 20 &&
-                     NotasDisponiveisNoCaixa.Any(x => x.Key == 20 && x.Value > 0))
-                    {
-                        ObterDoCaixaNota(20);
-                        valorDoSaque -= 20;
-                        SacarDoCaixaNota(20);
-                    }
-
-                    else if (valorDoSaque >= 10 &&
-                     NotasDisponiveisNoCaixa.Any(x => x.Key == 10 && x.Value > 0))
-                    {
-                        ObterDoCaixaNota(10);
-                        valorDoSaque -= 10;
-                        SacarDoCaixaNota(10);
-                    }
-                }
+                throw new Exception("Saque mínimo é de 10");
             }
 
+            while (TemDisponivel(valorDoSaque))
+            {
+                if (valorDoSaque >= 100 && TemQuantidadeSuficienteDe(100))
+                {
+                    ObterDoCaixaNota(100);
+                    valorDoSaque -= 100;
+                    SacarDoCaixaNota(100);
+
+                }
+
+                else if (valorDoSaque >= 50 && TemQuantidadeSuficienteDe(50))
+                {
+                    ObterDoCaixaNota(50);
+                    valorDoSaque -= 50;
+                    SacarDoCaixaNota(50);
+                }
+
+                else if (valorDoSaque >= 20 && TemQuantidadeSuficienteDe(20))
+                {
+                    ObterDoCaixaNota(20);
+                    valorDoSaque -= 20;
+                    SacarDoCaixaNota(20);
+                }
+
+                else if (valorDoSaque >= 10 && TemQuantidadeSuficienteDe(10))
+                {
+                    ObterDoCaixaNota(10);
+                    valorDoSaque -= 10;
+                    SacarDoCaixaNota(10);
+                }
+
+                else
+                {
+                    throw new Exception("Não tem nota suficiente para o saque");
+                }
+            }
+            if (!ResultadoDoSaque.Any())
+            {
+                throw new Exception("Não tem saldo suficiente para o saque");
+            }
             return ResultadoDoSaque;
+        }
+
+        private bool TemQuantidadeSuficienteDe(int nota)
+        {
+            return NotasDisponiveisNoCaixa.Any(x => x.Key == nota && x.Value > 0);
         }
 
         public void ObterDoCaixaNota(int valorDaNota)
@@ -86,7 +98,8 @@ namespace App
         public bool TemDisponivel(int valorDoSaque)
         {
             int saldoDisponivel = NotasDisponiveisNoCaixa.Sum(x => x.Key * x.Value);
-            return saldoDisponivel >= valorDoSaque;
+
+            return valorDoSaque > 0 && valorDoSaque <= saldoDisponivel;
         }
     }
 }
