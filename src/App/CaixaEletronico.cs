@@ -99,6 +99,11 @@ namespace App
         {
             int saldoDisponivel = NotasDisponiveisNoCaixa.Sum(x => x.Key * x.Value);
 
+            if (valorDoSaque % 10 != 0)
+            {
+                throw new Exception("Valor informado não corresponde as notas disponíveis no caixa");
+            }
+
             return valorDoSaque > 0 && valorDoSaque <= saldoDisponivel;
         }
     }
